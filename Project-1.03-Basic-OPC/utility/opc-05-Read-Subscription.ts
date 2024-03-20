@@ -1,25 +1,48 @@
 import {
-  OPCUAClient,
   AttributeIds,
-  ClientSubscription,
-  TimestampsToReturn,
-  MonitoringParametersOptions,
   ClientMonitoredItem,
+  ClientSubscription,
+  MessageSecurityMode,
+  MonitoringParametersOptions,
+  OPCUAClient, 
+  SecurityPolicy, 
+  TimestampsToReturn, 
+  UserIdentityInfoUserName, 
+  UserTokenType
 } from "node-opcua-client";
 
-// Define the node to monitor
-const nodeIdToMonitor = "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.MotorSpeed";
-const endpointUrl = "opc.tcp://localhost:4840"; // Replace with your server's endpoint URL
 
+async function main(): Promise < void > {
+  // Connection Option
+  const options = {
+    applicationName: "MyClient",
+    connectionStrategy: {
+      initialDelay: 2000,
+      maxDelay: 10 * 1000,
+      maxRetry: 10
+    },
+    securityMode: MessageSecurityMode.None,
+    securityPolicy: SecurityPolicy.None,
+    endpoint_must_exist: false,
+  };
+  const client = OPCUAClient.create(options);
+  
+  const nodeIdToMonitor = "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.MotorSpeed";
+  const endpointUrl = "opc.tcp://localhost:4840"; // Replace with your server's endpoint URL
 
-async function monitorNodeValue(): Promise<void> {
   try {
-    const client = OPCUAClient.create({ endpoint_must_exist: false });
     await client.connect(endpointUrl);
-    console.log("Connected to the OPC UA server.");
+    console.log("Connected to the server!");
 
-    const session = await client.createSession();
-    console.log("Session created.");
+    const userIdentity: UserIdentityInfoUserName = {
+      type: UserTokenType.UserName,
+      userName: "user",
+      password: "user"
+    };
+
+    const session = await client.createSession(userIdentity);
+    
+    console.log("Session created!");
 
     const subscription = ClientSubscription.create(session, {
       requestedPublishingInterval: 1000,
@@ -72,10 +95,9 @@ async function monitorNodeValue(): Promise<void> {
 
     process.on('SIGINT', cleanup);
     process.on('SIGTERM', cleanup);
-
   } catch (err) {
     console.error("An error occurred:", err);
   }
 }
 
-monitorNodeValue();
+main();

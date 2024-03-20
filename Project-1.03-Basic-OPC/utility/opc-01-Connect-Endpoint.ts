@@ -1,14 +1,14 @@
-/**
- * Program to connect to the OPC Server and retrieve endpoints.
- */
+/*
+  Program to connect to OPC Server and get available endpoints.
 
+*/
 import {
   MessageSecurityMode,
   OPCUAClient,
   SecurityPolicy,
 } from "node-opcua";
 
-// Connection option
+// Connection Option
 const options = {
   applicationName: "MyClient",
   connectionStrategy: {
@@ -23,7 +23,7 @@ const options = {
 
 const endpointUrl = "opc.tcp://ZTODTENGIOT-18:4840";
 
-async function main(){
+async function main() {
   const client = OPCUAClient.create(options);
 
   client.on("backoff", (retry: number, delay: number) => {
@@ -33,22 +33,19 @@ async function main(){
   try {
     console.log(`connecting to ${endpointUrl}`);
     await client.connect(endpointUrl);
-    console.log("Connected!");
+    console.log(`connected!`);
   } catch (err: any) {
     console.log(`Cannot connect to ${endpointUrl}`);
     console.log(err);
     return;
   }
 
-  // Get the endpoints
   const endpoints = await client.getEndpoints();
   console.log(JSON.stringify(endpoints, null, 2));
 
-  // Disconnect
   await client.disconnect();
   console.log("Disconnected!");
   process.exit(0);
 }
 
 main();
-

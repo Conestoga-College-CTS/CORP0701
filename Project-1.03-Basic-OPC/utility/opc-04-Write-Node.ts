@@ -1,26 +1,9 @@
 import {
+  AttributeIds,
   MessageSecurityMode,
-  OPCUAClient, SecurityPolicy, UserIdentityInfoUserName, UserTokenType
+  OPCUAClient, ReadValueIdOptions, SecurityPolicy, UserIdentityInfoUserName, UserTokenType, WriteValueOptions
 } from "node-opcua-client";
 
-async function browseNodeRecursively(session: any, nodeId: string, prefix: string = ''): Promise < void > {
-  try {
-    const browseResult = await session.browse(nodeId);
-    for (let i = 0; i < browseResult.references.length; i++) {
-      const reference = browseResult.references[i];
-      const isLast = (i === browseResult.references.length - 1);
-      const connector = isLast ? '└─' : '├─';
-      const newPrefix = isLast ? `${prefix}   ` : `${prefix}│  `;
-
-      console.log(`${prefix}${connector} ${reference.browseName.name} (${reference.nodeId.toString()})`);
-
-      // Recursive call to browse children of the current node with new prefix
-      await browseNodeRecursively(session, reference.nodeId, newPrefix);
-    }
-  } catch (err) {
-    console.error("Browse failed:", err);
-  }
-}
 
 async function main(): Promise < void > {
   // Connection Option
@@ -53,10 +36,27 @@ async function main(): Promise < void > {
     
     console.log("Session created!");
 
-    // Start browsing from the Objects folder (ns=0;i=85)
-    // await browseNodeRecursively(session, "RootFolder");
-    await browseNodeRecursively(session, "ns=0;i=85");
+    const nodesToRead: ReadValueIdOptions[] = [
+      { nodeId: "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.MotorSpeed",
+        attributeId: AttributeIds.Value 
+      },
+      { nodeId: "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.MotorTemp",
+        attributeId: AttributeIds.Value 
+      },
+      { nodeId: "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.MotorRunning",
+        attributeId: AttributeIds.Value 
+      },  
+    ];
 
+    const nodeToWrite: WriteValueOptions = {
+      nodeId: "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.MotorSpeedSet",
+      attributeId: AttributeIds.Value,
+      value: {value: {dataType: "Int16", value: 124}}
+    }
+
+    let writeResult = await session.write(nodeToWrite);
+    console.log(writeResult.toString());
+    
     await session.close();
     await client.disconnect();
     console.log("Disconnected from the server!");
