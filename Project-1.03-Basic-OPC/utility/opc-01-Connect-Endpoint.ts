@@ -6,7 +6,7 @@ import {
   MessageSecurityMode,
   OPCUAClient,
   SecurityPolicy,
-} from "node-opcua";
+} from "node-opcua-client";
 
 // Connection Option
 const options = {
@@ -18,7 +18,7 @@ const options = {
   },
   securityMode: MessageSecurityMode.None,
   securityPolicy: SecurityPolicy.None,
-  endpoint_must_exist: false,
+  endpointMustExist: false,
 };
 
 const endpointUrl = "opc.tcp://ZTODTENGIOT-18:4840";

@@ -24,7 +24,7 @@ async function main(): Promise < void > {
     },
     securityMode: MessageSecurityMode.None,
     securityPolicy: SecurityPolicy.None,
-    endpoint_must_exist: false,
+    endpointMustExist: false,
   };
   const client = OPCUAClient.create(options);
   

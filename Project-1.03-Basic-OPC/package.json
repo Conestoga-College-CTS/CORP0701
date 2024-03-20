@@ -16,7 +16,6 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
-    "mqtt": "^5.5.0",
     "node-opcua": "^2.123.0",
     "node-opcua-client": "^2.123.0"
   }
