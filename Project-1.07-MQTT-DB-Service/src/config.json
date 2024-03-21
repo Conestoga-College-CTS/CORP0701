@@ -1,0 +1,5 @@
+{
+  "mqttBroker": "mqtt://localhost",
+  "mqttPort": 6883,
+  "mqttTopic": "#"
+}

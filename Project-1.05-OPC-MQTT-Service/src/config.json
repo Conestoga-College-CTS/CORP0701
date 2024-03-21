@@ -1,0 +1,63 @@
+{
+  "opcua": {
+    "endpoint": {
+      "url": "opc.tcp://localhost:4840"
+    },
+    "userIdentity": {
+      "username": "user",
+      "password": "user"
+    },
+    "subscription": {
+      "parameters": {
+        "requestedPublishingInterval": 1000,
+        "requestedLifetimeCount": 100,
+        "requestedMaxKeepAliveCount": 10,
+        "maxNotificationsPerPublish": 100,
+        "publishingEnabled": true,
+        "priority": 10
+      }
+    },
+    "monitoredItems": {
+      "items": [{
+          "nodeId": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.MotorSpeed",
+          "parameters": {
+            "samplingInterval": 100,
+            "discardOldest": true,
+            "queueSize": 10
+          },
+          "mqttTopic": "plc_1/motorspeed"
+        },
+        {
+          "nodeId": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.ramp",
+          "parameters": {
+            "samplingInterval": 100,
+            "discardOldest": true,
+            "queueSize": 10
+          },
+          "mqttTopic": "plc_1/ramp"
+        },
+        {
+          "nodeId": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.sineWave",
+          "parameters": {
+            "samplingInterval": 100,
+            "discardOldest": true,
+            "queueSize": 10
+          },
+          "mqttTopic": "plc_1/sineWave"
+        },
+        {
+          "nodeId": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.cosineWave",
+          "parameters": {
+            "samplingInterval": 100,
+            "discardOldest": true,
+            "queueSize": 10
+          },
+          "mqttTopic": "plc_1/cosineWave"
+        }
+      ]
+    }
+  },
+  "mqtt": {
+    "brokerUrl": "mqtt://localhost:6883"
+  }
+}

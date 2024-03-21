@@ -1,0 +1,23 @@
+{
+  "name": "project-1.07-mqtt-db-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "knex": "^3.1.0",
+    "mqtt": "^5.5.0",
+    "pg": "^8.11.3"
+  }
+}
