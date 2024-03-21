@@ -1,3 +1,5 @@
+# Setting up TypeScript Project
+
 1. Initialize Project
 
     Create a new directory for the project and navigate into it:

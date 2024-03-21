@@ -1,27 +1,28 @@
-{
-          "nodeId": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.ramp",
-          "parameters": {
-            "samplingInterval": 100,
-            "discardOldest": true,
-            "queueSize": 10
-          },
-          "mqttTopic": "plc_1/ramp"
-        },
-        {
-          "nodeId": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.sineWave",
-          "parameters": {
-            "samplingInterval": 100,
-            "discardOldest": true,
-            "queueSize": 10
-          },
-          "mqttTopic": "plc_1/sineWave"
-        },
-        {
-          "nodeId": "ns=4;s=|var|CODESYS Control Win V3 x64.Application.PLC_PRG.cosineWave",
-          "parameters": {
-            "samplingInterval": 100,
-            "discardOldest": true,
-            "queueSize": 10
-          },
-          "mqttTopic": "plc_1/cosineWave"
-        }
+# OPC-MQTT-Service
+
+The OPC-MQTT-Service is a Node.js application responsible for fetching telemetry data from CODESYS PLCs using the OPC-UA protocol and publishing this data to an MQTT broker.
+
+## Features
+
+- OPC-UA client for communication with PLCs.
+- MQTT publisher for transmitting data to an MQTT broker.
+
+## Setup
+
+To set up the service, ensure you have Node.js installed and then run:
+
+```bash
+npm install
+```
+
+Compile the TypeScript code with:
+
+```bash
+npm run build
+```
+
+Then start the service with:
+
+```bash
+npm start
+```

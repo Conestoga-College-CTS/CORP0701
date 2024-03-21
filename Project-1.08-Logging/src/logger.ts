@@ -20,7 +20,7 @@ export class SimpleLogger {
     const logMessage = `[${timestamp}] ${message}\n`;
 
     // Append log message to the log file
-    fs.appendFile(this.logFile, logMessage, (err) => {
+    fs.appendFile(this.logFile, logMessage, (err: any) => {
       if (err) {
         console.error('Failed to write to log file:', err);
       }

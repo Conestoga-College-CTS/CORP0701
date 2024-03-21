@@ -1,4 +1,4 @@
-# Telemetry Service
+# Telemetry REST Service
 
 This project provides a RESTful API service built with Express.js and TypeScript to retrieve telemetry data from a PostgreSQL database. It allows querying telemetry records by tag and a specified timestamp range.
 
@@ -7,26 +7,29 @@ This project provides a RESTful API service built with Express.js and TypeScript
 - Fetch telemetry data filtered by tag and timestamp range.
 - Uses Knex.js for query building to interact with PostgreSQL.
 
-## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+## Setup
 
-### Running
+To set up the service, ensure you have Node.js installed and then run:
 
-1. Build
+```bash
+npm install
+```
 
-   ```bash
-   npm run build
-   ```
+Compile the TypeScript code with:
 
-2. Run
+```bash
+npm run build
+```
 
-   ```bash
-   npm start
-   ```
+Then start the service with:
 
-### Testing
+```bash
+npm start
+```
 
-To verify the service is working as expected, you can use the following URL in your web browser, with a REST client like Postman, or with a command-line tool like curl:
+## Testing
 
-http://localhost:9000/telemetry?tag=plc_1/ramp&startTimestamp=2022-01-01T00:00:00Z&endTimestamp=2022-01-02T00:00:00Z
+To verify the service is working as expected, you can use the following URL in your web browser, or with a REST client like Postman, or with a command-line tool like curl:
+
+http://localhost:9000/telemetry?tag=plc_1/ramp&startTimestamp=2024-01-01T00:00:00Z&endTimestamp=2024-01-02T00:00:00Z

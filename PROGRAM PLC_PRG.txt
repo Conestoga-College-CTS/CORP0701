@@ -1,0 +1,50 @@
+PROGRAM PLC_PRG
+VAR 
+	MotorRunning: BOOL := FALSE; (* Motor status: TRUE if running, FALSE if stopped *)
+	MotorSpeed: INT := 0; (* Motor speed in RPM *)
+	MotorTemp: REAL := 10.5; (* Motor temperature in C*)
+	MotorSpeedSet: INT := 0;
+	
+	_time: REAL := 0.0; // Time variable to simulate waveform progression
+    timeStep: REAL := 0.01; // Increment time by this step to control speed
+
+    // Frequency and amplitude settings (ensure these are not set below 0)
+    frequency: REAL := 1.0; // Frequency of the waveforms
+    amplitude: REAL := 1.0; // Amplitude of the waveforms
+
+    // Waveform outputs
+    sawTooth: REAL;
+    ramp: REAL;
+    triangle: REAL;
+    sineWave: REAL;
+    cosineWave: REAL;
+
+    // Constants
+    TWO_PI: REAL := 6.283185307179586476925286766559;
+END_VAR
+
+// Main program logic
+_time := _time + timeStep; // Simulate time progression
+
+// Ensure frequency and amplitude are not less than 0
+frequency := MAX(frequency, 0.0);
+amplitude := MAX(amplitude, 0.0);
+
+// Saw Tooth waveform
+
+sawTooth := amplitude * (_time * frequency - TRUNC(_time * frequency));
+
+
+// Ramp waveform (similar to sawtooth but without resetting)
+ramp := amplitude * (_time * frequency - TRUNC(_time * frequency));
+
+// Triangle waveform
+triangle := amplitude * ABS(2 * (_time * frequency - TRUNC(_time * frequency + 0.5))) - amplitude;
+
+// Sine waveform
+sineWave := amplitude * SIN(TWO_PI * frequency * _time);
+
+// Cosine waveform
+cosineWave := amplitude * COS(TWO_PI * frequency * _time);
+
+GVL.TestTemp := 20;

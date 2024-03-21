@@ -1,163 +1,21 @@
 # Hands-on Activity – Development Environment Setup
 
-## Visual Studio Code (VS Code) is a powerful editor for TypeScript development.
-    
-    Provides – code completion, linting, real-time error check
+## Tool setup for using TypeScript
 
-## Tool setup
-    
-  Install tsc 
-    
-  ```
-  npm install -g typescript
-  ```
-    
-  Install ts-node
-  
-  ```
-  npm install -g ts-node
-  ```
+See file: [README-Tooling.md](/README-Tooling.md)
 
-  Verify the installed tool
-  ```
-  npm ls -g
-  ```
-    
-## Compiling and running TS using tsc and node
+## Setting up TypeScript Project
 
--  Show that node will not run app.ts
+See file: [README-TS-Project-Setup.md](/README-TS-Project-Setup.md)
 
-    ```
-    node app.ts
-    ```
+## Creating Class and Interface 
 
-- Compile and run 
-    ```
-    tsc app.ts
-
-    node app.js
-    ```
-
-## Compiling and running TS using ts-node
-
-- Compile and run 
-
-    ```bash
-    ts-node app.ts
-    ```
-
-## Setting up TS Project
-
-   See file: README-TS-Project-Setup.md 
-
-## Class and Interface - create a class that writes data to a file
-
-  ```ts
-  class Vehicle {
-    make: string;
-    model: string;
-    year: number;
-
-    constructor(make: string, model: string, year: number) {
-      this.make = make;
-      this.model = model;
-      this.year = year;
-    }
-
-    getInfo(): string {
-      return `${this.make} ${this.model} (${this.year})`;
-    }
-  }
-
-  const myCar = new Vehicle('Toyota', 'Corolla', 2020);
-  console.log(myCar.getInfo());
-  ```
-
-
-  Add Interface
-
-  ```ts
-  interface IVehicle {
-    make: string;
-    model: string;
-    year: number;
-    getInfo(): string;
-  }
-  ```
-
-  Final Code:
-
-  ```ts
-  console.log('Hello, TypeScript project!');
-
-  interface IVehicle {
-    make: string;
-    model: string;
-    year: number;
-    getInfo?(): string;
-  }
-
-  class Vehicle implements IVehicle{
-    make: string;
-    model: string;
-    year: number;
-
-    constructor(vehicle: IVehicle) {
-      this.make = vehicle.make;
-      this.model = vehicle.model;
-      this.year = vehicle.year;
-    }
-
-    getInfo(): string {
-      return `${this.make} ${this.model} (${this.year})`;
-    }
-  }
-
-  const myVehicle: IVehicle = {
-    make: 'BMW',
-    model: 'Z3',
-    year: 2012,
-  };
-
-  const myCar = new Vehicle(myVehicle);
-  console.log(myCar.getInfo());
-  ```
-
+See file: [README-TS-Class.md](/README-TS-Class.md)
 
 ## Creating Modules
 
-Convert the Car class into a module
+See file: [README-TS-Modules.md](/README-TS-Modules.md)
 
-```ts
-import {IVehicle} from './interfaces/vehicle';
+## Node.js IoT Stack
 
-export default class Vehicle implements IVehicle {
-  make: string;
-  model: string;
-  year: number;
-
-  constructor(vehicle: IVehicle) {
-    this.make = vehicle.make;
-    this.model = vehicle.model;
-    this.year = vehicle.year;
-  }
-
-  getInfo(): string {
-    return `${this.make} ${this.model} (${this.year})`;
-  }
-}
-```
-
-```ts
-export interface IVehicle {
-    make: string;
-    model: string;
-    year: number;
-    getInfo?(): string;
-  }
-```
-
-```ts
-import Vehicle from './vehicle';
-import {IVehicle} from './interfaces/vehicle';
-```
+See file: [README-IoT-Stack.md](/README-IoT-Stack.md)

@@ -21,16 +21,6 @@ services:
     ports:
       - "8432:5432"
 
-  loki:
-    image: grafana/loki:latest
-    container_name: loki
-    ports:
-      - "3100:3100"
-    volumes:
-      - ./local-config.yaml:/etc/loki/local-config.yaml
-      - ./logs:/var/log/nodejs
-    command: -config.file=/etc/loki/local-config.yaml
-
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
@@ -47,6 +37,3 @@ services:
 volumes:
   postgres-data:
   grafana-data:
-
-
-#  docker run -d --name=promtail --volume="C:\Users\prasshre\Documents\dev\CORP0701\Project-1.06-Infrastructure\logs:/var/logs" --volume="C:\Users\prasshre\Documents\dev\CORP0701\Project-1.06-Infrastructure\promtail-config.yml:/etc/promtail/config.yml" grafana/promtail:latest --config.file=/etc/promtail/config.yml
