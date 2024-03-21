@@ -47,3 +47,6 @@ services:
 volumes:
   postgres-data:
   grafana-data:
+
+
+#  docker run -d --name=promtail --volume="C:\Users\prasshre\Documents\dev\CORP0701\Project-1.06-Infrastructure\logs:/var/logs" --volume="C:\Users\prasshre\Documents\dev\CORP0701\Project-1.06-Infrastructure\promtail-config.yml:/etc/promtail/config.yml" grafana/promtail:latest --config.file=/etc/promtail/config.yml
