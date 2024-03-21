@@ -1,0 +1,17 @@
+{
+  "name": "project-1.08-logging",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/logger.js",
+  "types": "dist/logger.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.4.3"
+  }
+}
