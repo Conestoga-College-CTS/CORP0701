@@ -1,4 +1,4 @@
-# Hands-on Activity – Development Environment Setup
+# Hands-on Activity
 
 ## Tool setup for using TypeScript
 
