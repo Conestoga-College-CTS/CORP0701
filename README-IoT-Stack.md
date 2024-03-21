@@ -10,7 +10,7 @@ This repository houses a suite of Node.js programs written in TypeScript, design
 
 ### Infrastructure
 
-The services rely on a dockerized infrastructure defined in a [Project-1.06-Infrastructure\docker-compose.yml](/Project-1.06-Infrastructure/docker-compose.yamldocker-compose.yml) file, which includes the necessary components like 
+The services rely on a dockerized infrastructure defined in a [Project-1.06-Infrastructure/docker-compose.yml](/Project-1.06-Infrastructure/docker-compose.yaml) file, which includes the necessary components like 
 1. MQTT broker (HiveMQ)
 2. Postgres database,
 3. Grafana instance for visualization purposes.
