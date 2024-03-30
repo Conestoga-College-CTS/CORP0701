@@ -1,4 +1,4 @@
-import { readFileSync } from "fs";
+// import { readFileSync } from "fs";
 import { OPCUA } from "./class/OPCUA";
 import { MQTTClient, MQTTConfig } from "./class/MQTT";
 import { IEndpointConfig, ISubscriptionConfig, IMonitoredItemConfig, IUserIdentityConfig } from "./interface/IOPCUAConfig";
